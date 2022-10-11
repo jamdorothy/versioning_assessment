@@ -1,6 +1,6 @@
 class Versioning
     def self.increment_version_number(current_version)
-        # splitting string into 2 parts because only the first number can be >9
+        # splitting string into two parts because only the first number can be greater than 9
         current_version = current_version.split(".", 2)
         first_number = current_version[0]
         remaining_numbers = current_version[1].split('.')
@@ -11,7 +11,7 @@ class Versioning
             first_number += 1
             # turn incremented first number back to string
             first_number = first_number.to_s
-            # replace all 9s in the remaining numbers with 0
+            # replace all nines in remaining_numbers with zero
             result = remaining_numbers.map { |n| n.gsub!('9', '0') }.join('.')
         else
             result = self.increment_remaining_numbers_array(remaining_numbers).join('.')
@@ -48,3 +48,6 @@ class Versioning
         numbers.reverse
     end
 end
+
+# enables the function of submitting user input through terminal
+puts Versioning.increment_version_number(ARGV[0])
